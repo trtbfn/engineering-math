@@ -1,17 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "plstack.h"
 
-
-
-struct X {
-    power int,
-    multiplier int
-};
 
 int main(void) {
-    char[] equation = "^(x, 2) + x + 1"
-    char[] devider = "x + 1"
+    PolyNode polynodes[2] = {{3, 3}, {3, 2}};
+    int length = 5; 
+    PolyStack plstack = plstk_create_polystack(length, polynodes);
+    PolyNode *poped = plstk_pop(plstack);
+    printf("%d - %d", poped -> power, poped -> multiplier);
 
-    
-    
+    return 0;
 }
