@@ -1,19 +1,19 @@
 #include <stdlib.h>
 #include "plstack.h"
 
-struct PolyNode {
-    int power;
-    int multiplier;
-};
+// struct PolyNode {
+//     int power;
+//     int multiplier;
+// };
 
-struct PolyStackNode {
-    PolyNode *node;
-    PolyStackNode *next;
-};
+// struct PolyStackNode {
+//     PolyNode *node;
+//     PolyStackNode *next;
+// };
 
-struct PolyStack {
-    PolyStackNode *head;
-};
+// struct PolyStack {
+//     PolyStackNode *head;
+// };
 
 void plstk_push(PolyNode *plnode, PolyStack *plstack) {
     PolyStackNode *plstknode = malloc(sizeof(PolyStackNode));
@@ -21,7 +21,7 @@ void plstk_push(PolyNode *plnode, PolyStack *plstack) {
     plstknode -> next = NULL;
 
     if(plstack -> head == NULL) {
-        plstack -> head = plnode;
+        plstack -> head = plstknode;
         return; 
     }
         
@@ -30,7 +30,7 @@ void plstk_push(PolyNode *plnode, PolyStack *plstack) {
 }
 
 PolyNode *plstk_pop(PolyStack *plstack) {
-    if(plstack -> head == NULL) return; 
+    if(plstack -> head == NULL) return NULL; 
 
     PolyNode *poped_node = NULL;
     if(plstack -> head -> next == NULL) {
@@ -68,8 +68,8 @@ PolyStackNode *plstk_create_polystacknode(PolyNode *plnode) {
 PolyStack *plstk_create_polystack(int length, PolyNode *polynodes) {
     PolyStack *plstack = malloc(sizeof(PolyStack));
     for(int i = 0; i < length; i++) 
-        plstk_insert(
-            pl_create_polystacknode(polynodes[i]), 
+        plstk_push(
+            plstk_create_polystacknode(&polynodes), 
             plstack
         );
         
